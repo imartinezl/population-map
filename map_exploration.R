@@ -1,6 +1,6 @@
 
-library(dplyr)
 library(sf)
+library(dplyr)
 
 # Rejilla Grid_ETRS89_LAEA_ES_1K ------------------------------------------------------------------------
 
@@ -33,15 +33,13 @@ if(file.exists(data_file)){
   rm(data, map, map_df)
 }
 
-cord.dec = sp::SpatialPoints(cbind(d$N*1e3, d$E*1e3), proj4string=sp::CRS("+init=epsg:27700"))
-cord.UTM <- sp::spTransform(cord.dec, sp::CRS("+proj=longlat"))
-cord.UTM %>% head
-  
+
 n <- nrow(d)
 d %>% 
-  dplyr::slice(1:8000) %>% 
+  dplyr::slice(1:15000) %>%
   ggplot2::ggplot()+
-  ggplot2::geom_point(ggplot2::aes(x=E,y=N, color=log(t1_1)), size=0.01)+
+  # ggplot2::geom_point(ggplot2::aes(x=E,y=N, color=log(t1_1)), size=0.01)+
+  ggplot2::geom_point(ggplot2::aes(x=long,y=lat, color=log(t1_1)), size=0.01)+
   ggplot2::coord_equal()
 
 
