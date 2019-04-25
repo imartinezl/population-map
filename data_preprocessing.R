@@ -4,9 +4,7 @@ library(dplyr)
 # Rejilla Grid_ETRS89_LAEA_ES_1K ------------------------------------------------------------------------
 
 data_file <- "spain_population_2011.csv"
-if(file.exists(data_file)){
-  d <- data.table::fread(data_file, stringsAsFactors = F)
-}else{
+if(!file.exists(data_file)){
   data <- data.table::fread('C2011_RejillaEU_Indicadores.csv', stringsAsFactors = F)
   # map <- rgdal::readOGR('Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
   map <- sf::st_read('Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
@@ -30,3 +28,4 @@ if(file.exists(data_file)){
     write.csv(file=data_file, row.names = F)
   rm(data, map, map_df)
 }
+d <- data.table::fread(data_file, stringsAsFactors = F)
