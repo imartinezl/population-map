@@ -4,6 +4,7 @@ library(dplyr)
 
 # Rejilla Grid_ETRS89_LAEA_ES_1K ------------------------------------------------------------------------
 
+#https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat#geostat11
 data_file <- "spain_population_2011.csv"
 if(file.exists(data_file)){
   d <- data.table::fread(data_file, stringsAsFactors = F)
