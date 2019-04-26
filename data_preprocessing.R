@@ -1,7 +1,27 @@
 library(sf)
 library(dplyr)
 
+
+# Spain Border ----------------------------------------------------------------------
+
+canary.translation <- function(d){
+  d %>% dplyr::mutate(E = ifelse(E<2200,E+1800,E),
+                      N = ifelse(N<1250,N+400,N))
+}
+border <- jsonlite::read_json('spain_border.geojson')
+border_coords <- border$features[[1]]$geometry$coordinates
+contour <- lapply(1:length(border_coords), function(i){
+  (sapply(border_coords[[i]][[1]], unlist)/1000) %>% 
+    t() %>% data.frame() %>% 
+    dplyr::rename("E"="X1", "N"="X2") %>% 
+    dplyr::mutate(group=i)
+}) %>% 
+  dplyr::bind_rows() %>% 
+  canary.translation
+
 # Rejilla Grid_ETRS89_LAEA_ES_1K ------------------------------------------------------------------------
+# https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat#geostat11
+# http://www.ine.es/censos2011_datos/cen11_datos_resultados_rejillas.htm
 
 data_file <- "spain_population_2011.csv"
 if(!file.exists(data_file)){
@@ -28,4 +48,7 @@ if(!file.exists(data_file)){
     write.csv(file=data_file, row.names = F)
   rm(data, map, map_df)
 }
-d <- data.table::fread(data_file, stringsAsFactors = F)
+d <- data.table::fread(data_file, stringsAsFactors = F) %>% canary.translation
+
+
+
