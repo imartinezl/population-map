@@ -42,15 +42,20 @@ contour_eu %>%
 
 
 'population_2011_eu.csv.gz' %>% 
-  data.table::fread(stringsAsFactors = F) %>% head
+  data.table::fread(stringsAsFactors = F) %>% 
+  dplyr::mutate(w = 1/110.574, w=round(w*1e4)/1e4,
+                h=1/(111.320*cos(lat*pi/180)), h=round(h*1e4)/1e4) %>% 
   # dplyr::slice(sample(1:nrow(.),100000)) %>% 
-  dplyr::slice(1:30000) %>%
+  dplyr::slice(1:2000) %>% 
   dplyr::mutate(empty = TOT_P == 0) %>% 
   ggplot2::ggplot()+
-  ggplot2::geom_tile(ggplot2::aes(x=long,y=lat, fill=empty), width=1, height=1, na.rm=T)+
-  ggplot2::geom_path(data=contour_eu, ggplot2::aes(x=long,y=lat,group=1e4*country+group), color="#404F4D", size=0.3, na.rm=T) +
+  ggplot2::geom_polygon(data=contour_eu, ggplot2::aes(x=long,y=lat,group=1e4*country+group),
+                        fill="#35D68D", na.rm=T) +
+  ggplot2::geom_tile(ggplot2::aes(x=long,y=lat, fill=empty, width=w, height=h), na.rm=T)+
+  ggplot2::geom_path(data=contour_eu, ggplot2::aes(x=long,y=lat,group=1e4*country+group), color="#404F4D", na.rm=T) +
   ggplot2::scale_fill_manual(guide=F,values=c('white','#35D68D'))+
-  ggplot2::xlim(c(-40,40))+
-  ggplot2::ylim(c(32,70))+
-  ggplot2::coord_map(projection = 'ortho', orientation = c(40, 0, 0))
+  ggplot2::coord_equal(xlim=c(-18,-13),ylim=c(27,29))
+  # ggplot2::xlim(c(-40,40))+
+  # ggplot2::ylim(c(32,70))+
+  # ggplot2::coord_map(projection = 'ortho', orientation = c(40, 0, 0))
 # ggplot2::theme_void()
