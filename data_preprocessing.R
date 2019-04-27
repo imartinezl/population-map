@@ -48,6 +48,7 @@ if(!file.exists(contour_file)){
 
 get.contour.bis <- function(geojson_file){
   border <- jsonlite::read_json(geojson_file)
+  # sapply(border$features, function(x) x$properties$name_long) 
   contour <- data.frame()
   p <- 0
   for (feature in border$features) {
@@ -66,6 +67,11 @@ get.contour.bis <- function(geojson_file){
     }
   }
   contour
+  # contour %>% 
+  #   # dplyr::filter(country==29, group==29) %>% #group_by(group) %>% summarize(n()) %>% View
+  #   # dplyr::slice(1:1951) %>% tail()
+  #   ggplot2::ggplot()+
+  #   ggplot2::geom_path(ggplot2::aes(x=E,y=N,group=1e4*country+group))
 }
 contour_file <- 'contour_eu_processed.csv'
 if(!file.exists(contour_file)){
