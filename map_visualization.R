@@ -8,8 +8,8 @@ canary.lines <- function(g){
   )
 }
 contour_spain <- data.table::fread('contour_spain_processed.csv') %>% canary.translation
-'population_2011_spain.csv' %>% 
-  data.table::fread(stringsAsFactors = F) %>% 
+'population_2011_spain.csv.gz' %>% 
+  data.table::fread(stringsAsFactors = F) %>%
   canary.translation %>% 
   dplyr::slice(1:20000) %>%
   dplyr::mutate(empty = t1_1 == 0) %>% 
@@ -41,8 +41,8 @@ contour_eu %>%
   # ggplot2::theme_void()
 
 
-'population_2011_eu.csv' %>% 
-  data.table::fread(stringsAsFactors = F) %>% 
+'population_2011_eu.csv.gz' %>% 
+  data.table::fread(stringsAsFactors = F) %>% head
   # dplyr::slice(sample(1:nrow(.),100000)) %>% 
   dplyr::slice(1:30000) %>%
   dplyr::mutate(empty = TOT_P == 0) %>% 
