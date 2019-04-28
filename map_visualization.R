@@ -37,7 +37,7 @@ contour_eu %>%
   data.table::fread(stringsAsFactors = F) %>% 
   dplyr::filter(!is.na(CNTR_CODE)) %>%
   # dplyr::slice(sample(1:nrow(.),1000000)) %>%
-  dplyr::slice(1:3000) %>%
+  # dplyr::slice(1:3000) %>%
   dplyr::mutate(empty = TOT_P == 0) %>% 
   ggplot2::ggplot()+
   ggplot2::geom_polygon(data=contour_eu %>% dplyr::filter(!(country %in% not_data)), 
@@ -53,7 +53,7 @@ contour_eu %>%
   ggplot2::coord_equal() +
   ggplot2::theme_void() +
   ggplot2::theme(panel.grid.major = ggplot2::element_line(color="#404F4D", size = 0.1)) #+
-# ggplot2::ggsave(filename = 'test2.png', device='png', dpi = 300, height=16, width=32)
+  # ggplot2::ggsave(filename = 'test2.png', device='png', dpi = 300, height=16, width=32)
 
 
 # Coord Map -------------------------------------------------------------------------
