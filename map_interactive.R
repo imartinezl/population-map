@@ -2,9 +2,19 @@ library(dplyr)
 
 data <- data.table::fread('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', stringsAsFactors = F)
 
+en2longlat <- function(d, x, y, n, proj4string='+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs'){
+  long_lat <- cbind(d[[x]]*1e3, d[[y]]*1e3) %>% 
+    sp::SpatialPoints(proj4string=sp::CRS( proj4string)) %>% 
+    sp::spTransform(sp::CRS("+proj=longlat")) %>% 
+    as.data.frame() %>% 
+    apply(2,function(x){round(x*1e4)/1e4})
+  colnames(long_lat) <- paste0(c("long","lat"),n)
+  return(cbind(d,long_lat))
+}
+
 b <- data %>% 
-  dplyr::slice(1:100) %>% 
   dplyr::filter(!is.na(CNTR_CODE)) %>% 
+  # dplyr::slice(1:1000000) %>% 
   dplyr::mutate(TOT_P = ifelse(is.na(TOT_P),0,TOT_P),
                 empty = TOT_P==0)  %>% 
   dplyr::mutate(N = stringr::str_extract(GRD_ID, '(?<=N)\\d+') %>% as.numeric,
@@ -34,24 +44,11 @@ a <- lapply(1:nrow(b), function(i){
                                            c(b$longD[i],b$latD[i]),
                                            c(b$longE[i],b$latE[i])))
        ),
-       properties=list(pob=b$TOT_P[i],
-                       empty=b$empty[i]))
+       properties=list(p=b$TOT_P[i],
+                       e=b$empty[i]))
 })
-tmp <- jsonlite::toJSON(list(type="FeatureCollection", features=a), 
-                        auto_unbox = T) #%>% jsonlite::prettify()
-tmp
-write(tmp,"test.geojson")
-u <- '{"type": "Polygon", "coordinates": [['
-v <- ']]}'
+jsonlite::toJSON(list(type="FeatureCollection", features=a), auto_unbox = T) %>% 
+  write("test3.geojson")
 
 
 
-en2longlat <- function(d, x, y, n, proj4string='+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs'){
-  long_lat <- cbind(d[[x]]*1e3, d[[y]]*1e3) %>% 
-    sp::SpatialPoints(proj4string=sp::CRS( proj4string)) %>% 
-    sp::spTransform(sp::CRS("+proj=longlat")) %>% 
-    as.data.frame() %>% 
-    apply(2,function(x){round(x*1e4)/1e4})
-  colnames(long_lat) <- paste0(c("long","lat"),n)
-  return(cbind(d,long_lat))
-}
