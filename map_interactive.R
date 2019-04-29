@@ -1,6 +1,9 @@
 library(dplyr)
 
-data <- data.table::fread('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', stringsAsFactors = F)
+data <- data.table::fread('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', 
+                          stringsAsFactors = F) %>% 
+  dplyr::filter(!is.na(CNTR_CODE)) %>% 
+  dplyr::arrange(CNTR_CODE)
 
 en2longlat <- function(d, x, y, n, proj4string='+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs'){
   long_lat <- cbind(d[[x]]*1e3, d[[y]]*1e3) %>% 
@@ -52,3 +55,44 @@ jsonlite::toJSON(list(type="FeatureCollection", features=a), auto_unbox = T) %>%
 
 
 
+countries <- data$CNTR_CODE %>% unique()
+jump <- 175000
+g <- 0
+for(i in seq(1,nrow(data), by=jump)){
+  a <- i
+  b <- min(i+jump-1,nrow(data))
+  g <- g+1
+  
+  file_name <- paste0('test_', g, '.geojson')
+  b <- data %>% 
+    dplyr::slice(a:b) %>%
+    dplyr::mutate(TOT_P = ifelse(is.na(TOT_P),0,TOT_P),
+                  empty = TOT_P==0)  %>% 
+    dplyr::mutate(N = stringr::str_extract(GRD_ID, '(?<=N)\\d+') %>% as.numeric,
+                  E = stringr::str_extract(GRD_ID, '(?<=E)\\d+') %>% as.numeric) %>%
+    dplyr::mutate(N1 = N+0.5, N2 = N-0.5, E1 = E+0.5, E2 = E-0.5) %>% 
+    en2longlat("E1","N1","A") %>% 
+    en2longlat("E1","N2","B") %>% 
+    en2longlat("E2","N2","C") %>% 
+    en2longlat("E2","N1","D") %>% 
+    en2longlat("E1","N1","E") 
+  
+  jsonlite::toJSON(list(type="FeatureCollection", 
+                        features=lapply(1:nrow(b), function(i){ 
+                          list(type="Feature", 
+                               geometry=list(type="Polygon",
+                                             coordinates=list(list(c(b$longA[i],b$latA[i]),
+                                                                   c(b$longB[i],b$latB[i]),
+                                                                   c(b$longC[i],b$latC[i]),
+                                                                   c(b$longD[i],b$latD[i]),
+                                                                   c(b$longE[i],b$latE[i])))
+                               ),
+                               properties=list(p=b$TOT_P[i],
+                                               e=b$empty[i]))
+                        })), auto_unbox = T) %>% 
+    write(file_name)
+}
+  
+  
+  
+  
