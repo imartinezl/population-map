@@ -1,19 +1,41 @@
 # Population Density Map
 
-Europe population density visualization. This repo contains the code for the loading, transformation and visualization of a large dataset of population information. 
-
-I got inspired
-
-## Main Objectives
-The objectives of this personal project are 
+This repo contains the code for visualization of the population density in Europe and in Spain. It covers the entire data pipeline, starting from the importation, going through the transformation and analysis, and finishing on the visualization. Please, notice that the selected datasets are large in size, and thus the project is mainly concieved from the efficiency point of view. 
 
 
-# What it does
+## What I wanted to do
+
+The main objectives of this project can be summarized in the following two ideas:
+
+- **Visualize the least populated regions in Europe**
+
+This purpose is very simple to define. Here I was very much inspired by [this article](https://www.citymetric.com/fabric/nine-things-we-learned-population-density-map-europe-3775) where Jonn Elledge introduces the visualization of by [Dan Cookson](https://twitter.com/danc00ks0n). 
+- **Learn how to approach the viz of large spatial datasets**
+
+
+https://dancooksonresearch.carto.com/u/dancookson/viz/49ca276c-adf9-454a-8f64-0ccf0e46eed0/embed_map
+
+
+## What it does
 
 
 
+Interactive
+
+- Generate GEOJSON
+
+- MBTiles generation with tippecanoe
+tippecanoe -o tile*.mbtiles -zg --coalesce-densest-as-needed --extend-zooms-if-still-dropping test_*.geojson
+
+- Upload to Mapbox
 
 
+- Countries Covered
+
+- Color Scale
+10-50-100-1000-5000-10000->10000
+#d2fbd4,#a5dbc2,#7bbcb0,#559c9e,#3a7c89,#235d72,#123f5a
+https://carto.com/carto-colors/
 
 ## Challenges I run into
 
