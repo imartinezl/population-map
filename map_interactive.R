@@ -55,7 +55,8 @@ jsonlite::toJSON(list(type="FeatureCollection", features=a), auto_unbox = T) %>%
 
 
 
-countries <- data$CNTR_CODE %>% unique()
+# SPLIT GEOJSON ---------------------------------------------------------------------
+
 jump <- 175000
 g <- 0
 for(i in seq(1,nrow(data), by=jump)){
@@ -68,8 +69,8 @@ for(i in seq(1,nrow(data), by=jump)){
     dplyr::slice(a:b) %>%
     dplyr::mutate(TOT_P = ifelse(is.na(TOT_P),0,TOT_P),
                   empty = TOT_P==0)  %>% 
-    dplyr::mutate(N = stringr::str_extract(GRD_ID, '(?<=N)\\d+') %>% as.numeric,
-                  E = stringr::str_extract(GRD_ID, '(?<=E)\\d+') %>% as.numeric) %>%
+    # dplyr::mutate(N = stringr::str_extract(GRD_ID, '(?<=N)\\d+') %>% as.numeric,
+    # E = stringr::str_extract(GRD_ID, '(?<=E)\\d+') %>% as.numeric) %>%
     dplyr::mutate(N1 = N+0.5, N2 = N-0.5, E1 = E+0.5, E2 = E-0.5) %>% 
     en2longlat("E1","N1","A") %>% 
     en2longlat("E1","N2","B") %>% 
@@ -92,7 +93,73 @@ for(i in seq(1,nrow(data), by=jump)){
                         })), auto_unbox = T) %>% 
     write(file_name)
 }
+
+
+# SMART SPLIT GEOJSON ---------------------------------------------------------------
+
+data <- data.table::fread('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', 
+                          stringsAsFactors = F) %>% 
+  dplyr::filter(!is.na(CNTR_CODE)) %>% 
+  dplyr::arrange(CNTR_CODE) %>% 
+  dplyr::mutate(N = stringr::str_extract(GRD_ID, '(?<=N)\\d+') %>% as.numeric,
+                E = stringr::str_extract(GRD_ID, '(?<=E)\\d+') %>% as.numeric)
+
+# data %>% group_by(CNTR_CODE) %>% dplyr::summarise(n()) %>% View
+# data %>% 
+#   dplyr::filter(CNTR_CODE == "DE") %>% 
+#   dplyr::arrange(CNTR_CODE,E) %>% 
+#   dplyr::slice(sample(1:nrow(.),10000)) %>%
+#   # dplyr::slice(1:100000) %>%
+#   ggplot2::ggplot()+
+#   ggplot2::geom_point(ggplot2::aes(x=E,y=N), size=0.1)+
+#   ggplot2::coord_equal()
+
+groups <- list("CNTR_CODE %in% c('ES','PT') | (CNTR_CODE=='FR' & N<2400)",
+               "CNTR_CODE=='FR' & N>=2400 & N<2800",
+               "CNTR_CODE %in% c('BE','NL') | (CNTR_CODE=='FR' & N>=2800)",
+               "CNTR_CODE %in% c('IE','UK')",
+               "CNTR_CODE %in% c('IT')",
+               "CNTR_CODE %in% c('AT','LI','CH','CZ','SL','SI','SK','HR') | (CNTR_CODE=='PL' & N<3050)",
+               "CNTR_CODE=='PL' & N>=3050",
+               "CNTR_CODE %in% c('AL','EL','BG','MT','XK*','RO','HU')",
+               "CNTR_CODE %in% c('FI','LV','LT')",
+               "CNTR_CODE %in% c('SE','NO','EE')",
+               "CNTR_CODE %in% c('DK') | (CNTR_CODE=='DE' & N>=3300)",
+               "CNTR_CODE=='DE' & N<3300")
+
+for(i in 1:length(groups)){
+  file_name <- paste0('test_', i, '.geojson')
+  print(file_name)
+  b <- data %>% 
+    dplyr::filter_(groups[[i]]) %>% 
+    dplyr::mutate(TOT_P = ifelse(is.na(TOT_P),0,TOT_P),
+                  empty = TOT_P==0)  %>% 
+    # dplyr::mutate(N = stringr::str_extract(GRD_ID, '(?<=N)\\d+') %>% as.numeric,
+    # E = stringr::str_extract(GRD_ID, '(?<=E)\\d+') %>% as.numeric) %>%
+    dplyr::mutate(N1 = N+0.5, N2 = N-0.5, E1 = E+0.5, E2 = E-0.5) %>% 
+    en2longlat("E1","N1","A") %>% 
+    en2longlat("E1","N2","B") %>% 
+    en2longlat("E2","N2","C") %>% 
+    en2longlat("E2","N1","D") %>% 
+    en2longlat("E1","N1","E") 
+  
+  jsonlite::toJSON(list(type="FeatureCollection", 
+                        features=lapply(1:nrow(b), function(i){ 
+                          list(type="Feature", 
+                               geometry=list(type="Polygon",
+                                             coordinates=list(list(c(b$longA[i],b$latA[i]),
+                                                                   c(b$longB[i],b$latB[i]),
+                                                                   c(b$longC[i],b$latC[i]),
+                                                                   c(b$longD[i],b$latD[i]),
+                                                                   c(b$longE[i],b$latE[i])))
+                               ),
+                               properties=list(p=b$TOT_P[i],
+                                               e=b$empty[i]))
+                        })), auto_unbox = T) %>% 
+    write(file_name)
   
   
-  
-  
+}
+
+
+
