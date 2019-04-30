@@ -1,6 +1,6 @@
 library(dplyr)
 
-data <- data.table::fread('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', 
+data <- data.table::fread('../data/grid/GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', 
                           stringsAsFactors = F) %>% 
   dplyr::filter(!is.na(CNTR_CODE)) %>% 
   dplyr::arrange(CNTR_CODE)
@@ -69,8 +69,8 @@ for(i in seq(1,nrow(data), by=jump)){
     dplyr::slice(a:b) %>%
     dplyr::mutate(TOT_P = ifelse(is.na(TOT_P),0,TOT_P),
                   empty = TOT_P==0)  %>% 
-    # dplyr::mutate(N = stringr::str_extract(GRD_ID, '(?<=N)\\d+') %>% as.numeric,
-    # E = stringr::str_extract(GRD_ID, '(?<=E)\\d+') %>% as.numeric) %>%
+    dplyr::mutate(N = stringr::str_extract(GRD_ID, '(?<=N)\\d+') %>% as.numeric,
+    E = stringr::str_extract(GRD_ID, '(?<=E)\\d+') %>% as.numeric) %>%
     dplyr::mutate(N1 = N+0.5, N2 = N-0.5, E1 = E+0.5, E2 = E-0.5) %>% 
     en2longlat("E1","N1","A") %>% 
     en2longlat("E1","N2","B") %>% 
@@ -97,7 +97,7 @@ for(i in seq(1,nrow(data), by=jump)){
 
 # SMART SPLIT GEOJSON ---------------------------------------------------------------
 
-data <- data.table::fread('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', 
+data <- data.table::fread('../data/grid/GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', 
                           stringsAsFactors = F) %>% 
   dplyr::filter(!is.na(CNTR_CODE)) %>% 
   dplyr::arrange(CNTR_CODE) %>% 

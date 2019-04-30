@@ -7,8 +7,8 @@ canary.lines <- function(g){
     ggplot2::geom_segment(x=3500, y=1450, xend=3500, yend=1680, size=0.3, linetype="dotted", alpha=0.8, colour="#404F4D")
   )
 }
-contour_spain <- data.table::fread('contour_spain_processed.csv') %>% canary.translation
-'population_2011_spain.csv.gz' %>% 
+contour_spain <- data.table::fread('../data/contour/contour_spain_processed.csv') %>% canary.translation
+'../data/population/population_2011_spain.csv.gz' %>% 
   data.table::fread(stringsAsFactors = F) %>%
   canary.translation %>% 
   dplyr::slice(1:20000) %>%
@@ -21,7 +21,7 @@ contour_spain <- data.table::fread('contour_spain_processed.csv') %>% canary.tra
   ggplot2::coord_equal() +
   ggplot2::theme_void()
 
-contour_eu <- data.table::fread('contour_eu_processed.csv')
+contour_eu <- data.table::fread('../data/contour/contour_eu_processed.csv')
 not_data <- c(8,11,13,33,38,40,41,42,49,54,55)-5
 contour_eu %>% 
   dplyr::filter(!(country %in% not_data)) %>% 
@@ -33,7 +33,7 @@ contour_eu %>%
 
 # Coord Equal -----------------------------------------------------------------------
 
-'population_2011_eu.csv' %>% 
+'../data/population/population_2011_eu.csv' %>% 
   data.table::fread(stringsAsFactors = F) %>% 
   dplyr::filter(!is.na(CNTR_CODE)) %>%
   # dplyr::slice(sample(1:nrow(.),1000000)) %>%
@@ -58,7 +58,7 @@ contour_eu %>%
 
 # Coord Map -------------------------------------------------------------------------
 
-'population_2011_eu.csv.gz' %>% 
+'../data/population/population_2011_eu.csv.gz' %>% 
   data.table::fread(stringsAsFactors = F) %>% 
   dplyr::mutate(w = 1/110.574, w=round(w*1e4)/1e4,
                 h=1/(111.320*cos(lat*pi/180)), h=round(h*1e4)/1e4) %>% 

@@ -5,14 +5,14 @@ library(dplyr)
 # Rejilla Grid_ETRS89_LAEA_ES_1K ------------------------------------------------------------------------
 
 #https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat#geostat11
-data_file <- "spain_population_2011.csv"
+data_file <- "..data/population/population_2011_spain.csv"
 if(file.exists(data_file)){
   d <- data.table::fread(data_file, stringsAsFactors = F)
 }else{
   
-  data <- data.table::fread('C2011_RejillaEU_Indicadores.csv', stringsAsFactors = F)
-  # map <- rgdal::readOGR('Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
-  map <- sf::st_read('Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
+  data <- data.table::fread('../data/grid/C2011_RejillaEU_Indicadores.csv', stringsAsFactors = F)
+  # map <- rgdal::readOGR('../data/grid/Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
+  map <- sf::st_read('../data/grid/Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
   map_df <- map %>% sf::st_set_geometry(NULL)
 
   en2longlat <- function(d, map){
@@ -60,8 +60,8 @@ sp::plot(map)
 
 # Rejilla RJ_CPV_20111101_TT_02_R_INE -----------------------------------------------------------------------
 
-data <- read.csv('C2011_RejillaEU_Indicadores.csv', stringsAsFactors = F)
-map <- rgdal::readOGR('RJ_CPV_20111101_TT_02_R_INE/RJ_CPV_20111101_TT_02_R_INE.shp', stringsAsFactors = F)
+data <- read.csv('../data/grid/C2011_RejillaEU_Indicadores.csv', stringsAsFactors = F)
+map <- rgdal::readOGR('../data/grid/RJ_CPV_20111101_TT_02_R_INE/RJ_CPV_20111101_TT_02_R_INE.shp', stringsAsFactors = F)
 map@data <- merge(map@data, data, by="GRD_NEWID", all.y = T)
 
 n <- nrow(map@data)
@@ -77,7 +77,7 @@ sapply(1:n, function(i){
 
 # Rejilla GEOSTAT-grid-POP-1K-2011-V2-0-1 ---------------------------------------------------------------------------
 
-d <- read.csv('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', stringsAsFactors = F)
+d <- read.csv('../data/grid/GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', stringsAsFactors = F)
 d %>% 
   dplyr::filter(CNTR_CODE == "ES") %>% 
   dplyr::slice(1:2000) %>% 

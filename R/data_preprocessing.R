@@ -35,9 +35,9 @@ get.contour <- function(geojson_file){
   }) %>% 
     dplyr::bind_rows()
 }
-contour_file <- 'contour_spain_processed.csv'
+contour_file <- '../data/contour/contour_spain_processed.csv'
 if(!file.exists(contour_file)){
-  'contour_spain.geojson' %>% 
+  '../data/contour/contour_spain.geojson' %>% 
     get.contour %>% 
     en2longlat() %>%
     write.csv(contour_file)
@@ -73,9 +73,9 @@ get.contour.bis <- function(geojson_file){
   #   ggplot2::ggplot()+
   #   ggplot2::geom_path(ggplot2::aes(x=E,y=N,group=1e4*country+group))
 }
-contour_file <- 'contour_eu_processed.csv'
+contour_file <- '../data/contour/contour_eu_processed.csv'
 if(!file.exists(contour_file)){
-  'contour_eu.geojson' %>% 
+  '../data/contour/contour_eu.geojson' %>% 
     get.contour.bis %>% 
     en2longlat() %>%
     write.csv(contour_file)
@@ -86,11 +86,11 @@ if(!file.exists(contour_file)){
 # Grid_ETRS89_LAEA_ES_1K ------------------------------------------------------------------------
 # http://www.ine.es/censos2011_datos/cen11_datos_resultados_rejillas.htm
 
-data_file <- "population_2011_spain.csv"
+data_file <- "../data/population/population_2011_spain.csv"
 if(!file.exists(data_file)){
-  data <- data.table::fread('C2011_RejillaEU_Indicadores.csv', stringsAsFactors = F)
-  # map <- rgdal::readOGR('Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
-  map <- sf::st_read('Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
+  data <- data.table::fread('../data/grid/C2011_RejillaEU_Indicadores.csv', stringsAsFactors = F)
+  # map <- rgdal::readOGR('../data/grid/Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
+  map <- sf::st_read('../data/grid/Grid_ETRS89_LAEA_ES_1K/', stringsAsFactors = F)
   map_df <- map %>% sf::st_set_geometry(NULL)
   proj4string <- sf::st_crs(map)$proj4string
   
@@ -108,10 +108,10 @@ if(!file.exists(data_file)){
 # GEOSTAT 2011 grid dataset ------------------------------------------------------------------------
 # https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat#geostat11
 
-data_file <- "population_2011_eu.csv"
+data_file <- "../data/population/population_2011_eu.csv"
 if(!file.exists(data_file)){
-  data <- data.table::fread('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', stringsAsFactors = F)
-  map <- sf::st_read('GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTATReferenceGrid/', stringsAsFactors = F)
+  data <- data.table::fread('../data/grid/GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTAT_grid_POP_1K_2011_V2_0_1.csv', stringsAsFactors = F)
+  map <- sf::st_read('../data/grid/GEOSTAT-grid-POP-1K-2011-V2-0-1/GEOSTATReferenceGrid/', stringsAsFactors = F)
   map_df <- map %>% sf::st_set_geometry(NULL)
   proj4string <- sf::st_crs(map)$proj4string
   
