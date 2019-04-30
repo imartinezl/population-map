@@ -27,6 +27,11 @@ Interactive
 - MBTiles generation with tippecanoe
 tippecanoe -o tile*.mbtiles -zg --coalesce-densest-as-needed --extend-zooms-if-still-dropping test_*.geojson
 
+tippecanoe --no-feature-limit --no-tile-size-limit --drop-densest-as-needed --minimum-zoom=0 --maximum-zoom=11 --output-to-directory "tiles" ./data/complete.geojson
+
+live-server --port=8000 --middleware="${PWD}/www/gzip.js" --host=localhost --browser=chromium-browser www
+
+
 - Upload to Mapbox
 
 
