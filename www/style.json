@@ -1,0 +1,35 @@
+{
+  "version": 8,
+  "name": "Custom",
+  "metadata": {
+    "mapbox:autocomposite": true
+  },
+  "sources": {
+    "composite": {
+      "type": "vector",
+      "tiles": ["http://localhost:8000/tiles/{z}/{x}/{y}.pbf"],
+      "minzoom": 2,
+      "maxzoom": 8
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#e3decb"
+      }
+    },
+    {
+      "id": "Road",
+      "type": "fill",
+      "source": "composite",
+      "source-layer": "complete",
+      "minzoom": 2,
+      "maxzoom": 8,
+      "paint": {
+          "fill-color": "#F00000"
+      }
+    }
+  ]
+}
