@@ -14,10 +14,45 @@
 <body>
   <div id="map"></div>
   <script>
+    var style = {
+    "version": 8,
+    "name": "Custom",
+    "metadata": {
+      "mapbox:autocomposite": true
+    },
+    "sources": {
+      "composite": {
+        "type": "vector",
+        "tiles": ["tiles/{z}/{x}/{y}.pbf"],
+        "minzoom": 0,
+        "maxzoom": 11
+      }
+    },
+    "layers": [
+      {
+        "id": "background",
+        "type": "background",
+        "paint": {
+          "background-color": "#e3decb"
+        }
+      },
+      {
+        "id": "Road",
+        "type": "fill",
+        "source": "composite",
+        "source-layer": "complete",
+        "minzoom": 0,
+        "maxzoom": 11,
+        "paint": {
+            "fill-color": "#F00000"
+        }
+      }
+    ]
+  }
     mapboxgl.accessToken = "not-needed-unless-using-mapbox-styles";
     var map = new mapboxgl.Map({
         container: "map",
-        style: "style.json",
+        style: style,
         center: [-0.1047, 51.5236],
         // These affect the hard limits of the zoom controls
         minZoom: 0,
