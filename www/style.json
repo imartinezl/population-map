@@ -7,9 +7,9 @@
   "sources": {
     "composite": {
       "type": "vector",
-      "tiles": ["http://localhost:8000/tiles/{z}/{x}/{y}.pbf"],
-      "minzoom": 2,
-      "maxzoom": 8
+      "tiles": ["tiles/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 11
     }
   },
   "layers": [
@@ -25,8 +25,8 @@
       "type": "fill",
       "source": "composite",
       "source-layer": "complete",
-      "minzoom": 2,
-      "maxzoom": 8,
+      "minzoom": 0,
+      "maxzoom": 11,
       "paint": {
           "fill-color": "#F00000"
       }
