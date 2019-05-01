@@ -24,6 +24,8 @@ Interactive
 
 - Generate GEOJSON
 
+https://geovation.github.io/build-your-own-static-vector-tile-pipeline
+
 - MBTiles generation with tippecanoe
 tippecanoe -o tile*.mbtiles -zg --coalesce-densest-as-needed --extend-zooms-if-still-dropping test_*.geojson
 
