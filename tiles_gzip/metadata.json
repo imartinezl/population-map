@@ -1,0 +1,14 @@
+{
+"name": "tiles",
+"description": "tiles",
+"version": "2",
+"minzoom": "0",
+"maxzoom": "11",
+"center": "-9.052734,39.436160,11",
+"bounds": "-31.276500,27.630700,31.416300,71.116900",
+"type": "overlay",
+"format": "pbf",
+"generator": "tippecanoe v1.34.2",
+"generator_options": "tippecanoe --no-feature-limit --no-tile-size-limit --drop-densest-as-needed '--minimum-zoom=0' '--maximum-zoom=11' --output-to-directory tiles ./data/complete.geojson",
+"json": "{\"vector_layers\": [ { \"id\": \"complete\", \"description\": \"\", \"minzoom\": 0, \"maxzoom\": 11, \"fields\": {\"e\": \"Boolean\", \"p\": \"Number\"} } ],\"tilestats\": {\"layerCount\": 1,\"layers\": [{\"layer\": \"complete\",\"count\": 2026602,\"geometry\": \"Polygon\",\"attributeCount\": 2,\"attributes\": [{\"attribute\": \"e\",\"count\": 1,\"type\": \"boolean\",\"values\": [false]},{\"attribute\": \"p\",\"count\": 1000,\"type\": \"number\",\"values\": [1,10,100,1000,10001,10003,10004,10005,10006,10008,10009,1001,10012,10019,1002,10024,10027,10029,1003,10030,10031,10033,10034,10036,10037,10039,1004,10041,10047,10048,1005,10051,10053,10055,10056,10057,10058,1006,10061,10062,10065,10068,1007,10074,10078,10079,1008,10080,10082,10083,10084,10085,10086,1009,10093,10095,10097,10098,10099,101,1010,10102,10104,10106,10107,10108,1011,10111,10114,10117,10119,1012,10120,10121,10123,10124,10126,10127,10128,1013,10131,10133,10135,10138,10139,1014,10141,10143,10148,10149,1015,10150,10152,10155,10156,10157,10158,10159,1016,10160],\"min\": 1,\"max\": 53119}]}]}}"
+}
