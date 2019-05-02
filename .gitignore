@@ -3,12 +3,13 @@
 *.geojson
 *.csv.gz
 *.xls
-*.png
 *.mbtiles
 
 .Rproj.user
 .Rhistory
 
+!tiles_png/*
+R/images/*
 data/*
 www/node_modules/*
 www/try_error/*
