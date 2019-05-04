@@ -33,6 +33,13 @@ tippecanoe --no-tile-compression --no-feature-limit --no-tile-size-limit --drop-
 
 live-server --port=8000 --middleware="${PWD}/www/gzip.js" --host=localhost --browser=chromium-browser www
 
+tippecanoe --cluster-densest-as-needed --minimum-zoom=0 --maximum-zoom=9 --output-to-directory "tiles_tmp1" ./data/complete.geojson
+
+tippecanoe --drop-densest-as-needed --minimum-zoom=0 --maximum-zoom=9 --output-to-directory "tiles_tmp2" ./data/complete.geojson
+
+tippecanoe --no-tile-size-limit --minimum-zoom=0 --maximum-zoom=9 --output-to-directory "tiles_tmp2" ./data/complete.geojson
+
+
 
 - Upload to Mapbox
 
