@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <title>Map</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <script src="https://api.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.css" rel="stylesheet" />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
   <style>
     body { margin:0; padding:0; }
     #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -14,49 +14,352 @@
 <body>
   <div id="map"></div>
   <script>
-    var style = {
+var style = {
     "version": 8,
-    "name": "Custom",
+    "name": "EU Population density - green-copy",
     "metadata": {
-      "mapbox:autocomposite": true
+        "mapbox:origin": "basic-template",
+        "mapbox:autocomposite": true,
+        "mapbox:type": "template",
+        "mapbox:sdk-support": {
+            "js": "0.50.0",
+            "android": "6.7.0",
+            "ios": "4.6.0"
+        },
+        "mapbox:trackposition": false
+       
     },
+    "center": [18.62210187549863, 48.654012990348576],
+    "zoom": 4.082745117219973,
+    "bearing": 0,
+    "pitch": 0,
+    "light": {"position": [1.15, 210, 30], "color": "hsl(0, 0%, 0%)"},
     "sources": {
-      "composite": {
-        "type": "vector",
-        "tiles": [location.origin+location.pathname+"tiles/{z}/{x}/{y}.pbf"],
-        "minzoom": 0,
-        "maxzoom": 11
-      }
+        "extra":{
+          "url": "mapbox://mapbox.mapbox-streets-v8",
+          "type": "vector"
+        },
+        "composite": {
+            "tiles": [location.origin+location.pathname+"tiles/{z}/{x}/{y}.pbf"],
+            "type": "vector"
+        }
     },
+    "sprite": "mapbox://sprites/inigoml/cjv6d2pyk013v1fmqkzhw55rj/629bpdwpqxu5j66f3aoku8h84",
+    "glyphs": "mapbox://fonts/inigoml/{fontstack}/{range}.pbf",
     "layers": [
-      {
-        "id": "background",
-        "type": "background",
-        "paint": {
-          "background-color": "#e3decb"
+        {
+            "id": "background",
+            "type": "background",
+            "layout": {},
+            "paint": {"background-color": "hsl(118, 0%, 100%)"}
+        },
+        {
+            "id": "water",
+            "type": "fill",
+            "source": "extra",
+            "source-layer": "water",
+            "filter": ["all"],
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(206, 53%, 71%)",
+                "fill-antialias": false
+            }
+        },
+        {
+            "id": "waterway",
+            "type": "line",
+            "source": "extra",
+            "source-layer": "waterway",
+            "minzoom": 8,
+            "filter": [
+                "all",
+                ["==", ["geometry-type"], "LineString"],
+                ["match", ["get", "class"], ["canal", "river"], true, false]
+            ],
+            "layout": {"line-join": "round", "line-cap": "round"},
+            "paint": {
+                "line-color": "hsl(205, 76%, 70%)",
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.3],
+                    ["zoom"],
+                    8.5,
+                    0.1,
+                    20,
+                    8
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    8,
+                    0,
+                    8.5,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "tile-s1",
+            "type": "fill",
+            "source": "composite",
+            "source-layer": "complete",
+            "layout": {},
+            "paint": {
+                "fill-color": [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "p"],
+                    10,
+                    "#d2fbd4",
+                    50,
+                    "#a5dbc2",
+                    100,
+                    "#7bbcb0",
+                    1000,
+                    "#559c9e",
+                    5000,
+                    "#3a7c89",
+                    10000,
+                    "#235d72",
+                    15000,
+                    "#123f5a"
+                ],
+                "fill-antialias": true
+            }
+        },
+        {
+            "id": "admin-state-province",
+            "type": "line",
+            "metadata": {},
+            "source": "extra",
+            "source-layer": "admin",
+            "minzoom": 2,
+            "filter": [
+                "all",
+                ["==", ["get", "admin_level"], 1],
+                ["==", ["get", "disputed"], "false"],
+                ["==", ["get", "maritime"], "false"],
+                ["match", ["get", "worldview"], ["US", "all"], true, false]
+            ],
+            "layout": {"line-join": "round", "line-cap": "round"},
+            "paint": {
+                "line-dasharray": [
+                    "step",
+                    ["zoom"],
+                    ["literal", [2, 0]],
+                    7,
+                    ["literal", [2, 2, 6, 2]]
+                ],
+                "line-width": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    7,
+                    0.75,
+                    12,
+                    1.5
+                ],
+                "line-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    2,
+                    0,
+                    3,
+                    1
+                ],
+                "line-color": [
+                    "step",
+                    ["zoom"],
+                    "hsl(0, 0%, 80%)",
+                    4,
+                    "hsl(0, 0%, 65%)"
+                ]
+            }
+        },
+        {
+            "id": "road",
+            "type": "line",
+            "source": "extra",
+            "source-layer": "road",
+            "minzoom": 5,
+            "filter": [
+                "all",
+                ["==", ["geometry-type"], "LineString"],
+                ["!=", ["get", "type"], "service:parking_aisle"],
+                [
+                    "match",
+                    ["get", "structure"],
+                    ["bridge", "tunnel"],
+                    false,
+                    true
+                ],
+                [
+                    "match",
+                    ["get", "class"],
+                    [
+                        "motorway",
+                        "motorway_link",
+                        "trunk",
+                        "trunk_link",
+                        "primary",
+                        "primary_link",
+                        "secondary",
+                        "secondary_link",
+                        "tertiary",
+                        "tertiary_link",
+                        "street",
+                        "street_limited",
+                        "service",
+                        "track"
+                    ],
+                    true,
+                    false
+                ]
+            ],
+            "layout": {"line-join": "round", "line-cap": "round"},
+            "paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.5],
+                    ["zoom"],
+                    5,
+                    [
+                        "match",
+                        ["get", "class"],
+                        ["motorway", "trunk", "primary"],
+                        0.5,
+                        "tertiary",
+                        0.01,
+                        0
+                    ],
+                    12,
+                    [
+                        "match",
+                        ["get", "class"],
+                        ["motorway", "trunk", "primary"],
+                        3,
+                        ["secondary", "tertiary"],
+                        2,
+                        [
+                            "motorway_link",
+                            "trunk_link",
+                            "street",
+                            "street_limited"
+                        ],
+                        0.5,
+                        0
+                    ],
+                    18,
+                    [
+                        "match",
+                        ["get", "class"],
+                        ["motorway", "trunk", "primary"],
+                        30,
+                        ["secondary", "tertiary"],
+                        24,
+                        [
+                            "motorway_link",
+                            "trunk_link",
+                            "street",
+                            "street_limited"
+                        ],
+                        12,
+                        10
+                    ]
+                ],
+                "line-color": [
+                    "match",
+                    ["get", "class"],
+                    [
+                        "street",
+                        "street_limited",
+                        "service",
+                        "track",
+                        "secondary_link",
+                        "tertiary_link",
+                        "primary_link",
+                        "trunk_link"
+                    ],
+                    "hsl(0, 83%, 91%)",
+                    "hsl(0, 4%, 86%)"
+                ]
+            }
+        },
+        {
+            "id": "place-city-label",
+            "type": "symbol",
+            "source": "extra",
+            "source-layer": "place_label",
+            "minzoom": 3,
+            "maxzoom": 14,
+            "filter": [
+                "all",
+                ["<=", ["get", "filterrank"], 3],
+                ["==", ["get", "type"], "city"]
+            ],
+            "layout": {
+                "text-size": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    3,
+                    ["step", ["get", "symbolrank"], 12, 9, 11, 12, 10, 14, 6.5],
+                    14,
+                    ["step", ["get", "symbolrank"], 27, 9, 23, 10, 21, 12, 20]
+                ],
+                "text-font": [
+                    "step",
+                    ["zoom"],
+                    ["literal", ["Roboto Medium", "Arial Unicode MS Regular"]],
+                    10,
+                    [
+                        "step",
+                        ["get", "symbolrank"],
+                        ["literal", ["Roboto Bold", "Arial Unicode MS Bold"]],
+                        5,
+                        [
+                            "literal",
+                            ["Roboto Medium", "Arial Unicode MS Regular"]
+                        ]
+                    ]
+                ],
+                "text-max-width": 10,
+                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]]
+            },
+            "paint": {
+                "text-color": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    5,
+                    "hsl(0, 0%, 33%)",
+                    6,
+                    "hsl(0, 0%, 0%)"
+                ],
+                "text-halo-blur": 0.5,
+                "text-halo-color": "hsla(0, 0%, 100%, 0.95)",
+                "text-halo-width": 1.25,
+                "text-opacity": 0.86
+            }
         }
-      },
-      {
-        "id": "Road",
-        "type": "fill",
-        "source": "composite",
-        "source-layer": "complete",
-        "minzoom": 0,
-        "maxzoom": 11,
-        "paint": {
-            "fill-color": "#F00000"
-        }
-      }
-    ]
-  }
-    mapboxgl.accessToken = "not-needed-unless-using-mapbox-styles";
+    ],
+    "created": "2019-05-02T08:02:09.277Z",
+    "id": "cjv6d2pyk013v1fmqkzhw55rj",
+    "modified": "2019-05-02T08:07:12.608Z",
+    "owner": "inigoml",
+    "visibility": "private",
+    "draft": false
+}
+    mapboxgl.accessToken = "pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA";
     var map = new mapboxgl.Map({
         container: "map",
-        style: style,
+        style: style3,
         center: [-0.1047, 51.5236],
         // These affect the hard limits of the zoom controls
         minZoom: 0,
-        zoom: 3,
+        zoom: 6,
         maxZoom: 11
     });
     map.addControl(new mapboxgl.NavigationControl());
