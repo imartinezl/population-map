@@ -1,8 +1,8 @@
 var liveServer = require("live-server");
  
 var params = {
-    port: 8000, // Set the server port. Defaults to 8080.
-    host: "localhost", // Set the address to bind to. Defaults to 0.0.0.0 or process.env.IP.
+    //port: 8000, // Set the server port. Defaults to 8080.
+    host: "https://population-map.herokuapp.com/", // Set the address to bind to. Defaults to 0.0.0.0 or process.env.IP.
     //root: "/public", // Set root directory that's being served. Defaults to cwd.
     open: false, // When false, it won't load your browser by default.
     watch: 'index.js', // comma-separated string for paths to ignore
