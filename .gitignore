@@ -11,6 +11,6 @@
 !tiles_png/*
 R/images/*
 data/*
-www/node_modules/*
+heroku/node_modules/*
 
 
