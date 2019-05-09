@@ -12,7 +12,7 @@
 	},
     "tiles": {
       "type": "vector",
-      "tiles": ["http://localhost:8000/tiles/{z}/{x}/{y}.pbf"],
+      "tiles": ["https://imartinezl.github.io/population-map/tiles/{z}/{x}/{y}.pbf"],
       "minzoom": 0,
       "maxzoom": 6
     }
