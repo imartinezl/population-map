@@ -1,7 +1,6 @@
 # Population Density Map
 
-This repo contains the code for visualization of the population density in Europe and in Spain. It covers the entire data pipeline, starting from the importation, going through the transformation and analysis, and finishing on the visualization. Please, notice that the selected datasets are large in size, and thus the project is mainly concieved from the efficiency point of view. 
-
+This repo contains the code for the analysis of the population density in Europe and in Spain. It covers the entire data ETL pipeline: data extraction from european and spanish public institutions, data transformation and analysis, and a visualization stage. Please, notice that the used datasets are quite large in size, and thus the project has been concieved from an educational point of view, always looking for the maximum efficiency in the entire pipeline. 
 
 ## What I wanted to do
 
@@ -9,7 +8,8 @@ The main objectives of this project can be summarized in the following two ideas
 
 - **Visualize the least populated regions in Europe**
 
-This purpose is very simple to define. Here I was very much inspired by [this article](https://www.citymetric.com/fabric/nine-things-we-learned-population-density-map-europe-3775) where Jonn Elledge introduces the visualization of by [Dan Cookson](https://twitter.com/danc00ks0n). 
+Regarding this objective, I was very much inspired by [this article](https://www.citymetric.com/fabric/nine-things-we-learned-population-density-map-europe-3775) where John Elledge introduces the visualization of [Dan Cookson](https://twitter.com/danc00ks0n). 
+
 - **Learn how to approach the viz of large spatial datasets**
 
 
@@ -68,6 +68,6 @@ https://carto.com/carto-colors/
 - [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) - Data manipulation operations / 1.12.1
 - [sf](http://r-spatial.github.io/sf/) - Simple features access for R / 0.7-3
 - [stringr](https://stringr.tidyverse.org/index.html) - Library for string manipulations / 1.4.0
-- [sp]() - 
-- [jsonlite]() - 
-- [ggplot2]() - 
+- [sp](https://github.com/edzer/sp/) - Classes and methods for spatial data / 1.3.1
+- [jsonlite](https://github.com/jeroen/jsonlite) - A Robust, High Performance JSON Parser and Generator for R / 1.6
+- [ggplot2](https://ggplot2.tidyverse.org/) - Grammar of Graphics for R / 3.1.0
