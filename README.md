@@ -4,17 +4,19 @@ This repo contains the code for the analysis of the population density in Europe
 
 ## What I wanted to do
 
-The main objectives of this project can be summarized in the following two ideas:
-
 - **Visualize the least populated regions in Europe**
 
-Regarding this objective, I was very much inspired by [this article](https://www.citymetric.com/fabric/nine-things-we-learned-population-density-map-europe-3775) where John Elledge introduces the visualization of [Dan Cookson](https://twitter.com/danc00ks0n). 
+I was very much inspired by [this article](https://www.citymetric.com/fabric/nine-things-we-learned-population-density-map-europe-3775) where John Elledge introduces the visualization of [Dan Cookson](https://twitter.com/danc00ks0n). 
 
-- **Learn how to approach the viz of large spatial datasets**
+- **Learn how to approach the visualization of large spatial datasets**
 
+Prior to this project, I had some experience working with small spatial datasets. Therefore, a large dataset presented a nice challenge!
 
 https://dancooksonresearch.carto.com/u/dancookson/viz/49ca276c-adf9-454a-8f64-0ccf0e46eed0/embed_map
 
+## Data Sources
+
+## Project Structure
 
 ## What it does
 
