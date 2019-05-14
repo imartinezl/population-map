@@ -1,6 +1,8 @@
 # Population Density Map
 
-This repo contains the code for the analysis of the population density in Europe and in Spain. It covers the entire data ETL pipeline: data extraction from european and spanish public institutions, data transformation and analysis, and a visualization stage. Please, notice that the used datasets are quite large in size, and thus the project has been concieved from an educational point of view, always looking for the maximum efficiency in the entire pipeline. 
+This repo contains the code for the analysis of the population density in Europe and in Spain. It covers the entire data ETL pipeline: data extraction from european and spanish public institutions, data transformation and analysis, and a visualization stage. 
+
+Please, notice that the used datasets are quite large in size, and thus the project has been concieved from an educational point of view, always looking for the maximum efficiency in the entire pipeline. 
 
 ## What I wanted to do
 
@@ -30,8 +32,52 @@ Prior to this project, I had some experience working with small spatial datasets
 
 ## Project Structure
 
+```
+population-map
+│   README.md
+│   index.html 
+│
+└───data
+│   └───grid
+│   |   └───GEOSTAT-grid-POP-1K-2011-V2-0-1
+│   |   └───Grid_ETRS89_LAEA_ES_1K
+|   |	└───RJ_CPV_20111101_TT_02_R_INE
+|   |
+│   └───contour
+|	|   contour_eu.geojson
+|	|   contour_spain.geojson
+|
+└───R
+│   │   data_preprocessing.R
+│   │   map_exploration.R
+│   │   map_interactive.R
+│   │   map_visualization.R
+```
+
 ## What it does
 
+1. Data Preprocessing
+
+Prior to the visualization stage, there is a data preprocessing stage in which some tasks are carried out: 
+
+- **Coordinate system conversion function**: subsequently used function to transform coordinates in system from *ETRS89 / LAEA Europe (EPSG:3035)* to the universal *WGS 84 (EPSG:4326)* system. 
+
+- **Contour dataset**: The polygon coordinates are extracted from the GeoJSON files and arranged in R's data.frame format to be exported to CSV. In the process, the coordinate system is converted as described above. Both for Spain and EU. 
+
+- **Grid + Population dataset**: Instead of reading the huge shapefile containing all the geographical information, I imported a CSV file that just summarized the population of each cell from the grid. The cell ID string contained the ETRS89 coordinates (North-East), that were extracted and then converted to WGS 84 (latitude-longitude).
+
+ 
+2. Vector Tiles
+
+3. Map Visualization
+
+- Offline (static) visualization
+R's library ggplot2 is used to represent the population density both in Europe and in Spain. Apart from the population quantity, I also included a map that coloured the empty 1km sq cells, which can lead to some interesting analysis.
+
+- Online visualization
+
+Carto DB
+Mapbox
 
 
 Interactive
