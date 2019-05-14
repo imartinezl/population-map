@@ -6,15 +6,31 @@ This repo contains the code for the analysis of the population density in Europe
 
 - **Visualize the least populated regions in Europe**
 
-I was very much inspired by [this article](https://www.citymetric.com/fabric/nine-things-we-learned-population-density-map-europe-3775) where John Elledge introduces the visualization of [Dan Cookson](https://twitter.com/danc00ks0n). 
+I was very much inspired by [this article](https://www.citymetric.com/fabric/nine-things-we-learned-population-density-map-europe-3775) where John Elledge introduces the visualization of [Dan Cookson](https://twitter.com/danc00ks0n), a map with the EU Population at 2011 onto a 1km grid. This great visualization is available [here](https://dancooksonresearch.carto.com/u/dancookson/viz/49ca276c-adf9-454a-8f64-0ccf0e46eed0/embed_map).
 
 - **Learn how to approach the visualization of large spatial datasets**
 
-Prior to this project, I had some experience working with small spatial datasets. Therefore, a large dataset presented a nice challenge!
-
-https://dancooksonresearch.carto.com/u/dancookson/viz/49ca276c-adf9-454a-8f64-0ccf0e46eed0/embed_map
+Prior to this project, I had some experience working with small spatial datasets. Therefore, a large dataset presented a nice challenge! The european 1km per 1km square grid dataset comprises over 2.000.000 features that need to be processed and rendered onto the map.
 
 ## Data Sources
+
+- Europe Grid: **GEOSTAT-grid-POP-1K-2011-V2-0-1**
+Very detailed grid available at [eurostat](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat). 
+Download [link](https://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/GEOSTAT-grid-POP-1K-2011-V2-0-1.zip)
+
+
+
+- Grid_ETRS89_LAEA_ES_1K
+
+RJ_CPV_20111101_TT_02_R_INE
+
+http://www.ine.es/censos2011_datos/cen11_datos_resultados_rejillas.htm
+
+http://www.ine.es/censos2011_datos/RJ_CPV_20111101_TT_02_R_INE.zip
+
+- Contour Maps
+Download geojson: https://geojson-maps.ash.ms/
+Convert from latlong to LAEA: https://mygeodata.cloud/converter/geojson-to-latlong
 
 ## Project Structure
 
