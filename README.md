@@ -72,12 +72,20 @@ Prior to the visualization stage, there is a data preprocessing stage in which s
 3. Map Visualization
 
 - Offline (static) visualization
-R's library ggplot2 is used to represent the population density both in Europe and in Spain. Apart from the population quantity, I also included a map that coloured the empty 1km sq cells, which can lead to some interesting analysis.
+Library ggplot2 for R is used to visualize the population density both in Europe and in Spain. Apart from the population quantity, I also included a map that highlighted the 1km sq cells with no population, which can lead to some interesting analysis.
 
-- Online visualization
+- Online (interactive) visualization
 
-Carto DB
-Mapbox
+Regarding interactive visualizations, two platforms were studied: [CARTO](https://carto.com/) and [Mapbox](https://www.mapbox.com/).
+
+On one side, the Student plan from CARTO just offered 350 MB of data storage, whereas the free tier plan from Mapbox offered much larger storage for tilesets (50 GB). Moreover, CARTO Import API does not support MBTiles, so the only remaining alternative was to upload the entire GeoJSON file to be imported and processed into a SQL-like table with the polygon coordinates. Check the CARTO supported formats on the [CARTO Documentation](https://carto.com/developers/import-api/guides/importing-geospatial-data/#supported-geospatial-data-formats).
+
+Therefore, these two points (storage limit and supported formats), were the main reasons not to select CARTO as the visualization platform. Thus, the decision was inclined towards Mapbox.
+
+In this sense, apart from using the online platform Mapbox Studio, I also explored the way of self-hosting the map and the tiles. This track will be further explained on the next section.
+
+4. Self-Hosted Map Tiles
+
 
 
 Interactive
