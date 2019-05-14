@@ -14,17 +14,19 @@ Prior to this project, I had some experience working with small spatial datasets
 
 ## Data Sources
 
-- Europe Grid: **GEOSTAT-grid-POP-1K-2011-V2-0-1**
-Very detailed grid (1km resolution) available at [eurostat](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat). 
-Download [link](https://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/GEOSTAT-grid-POP-1K-2011-V2-0-1.zip) (.zip file)
+- **Europe Grid**: GEOSTAT-grid-POP-1K-2011-V2-0-1
 
+   Detailed grid (1km resolution) available at [eurostat](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat). Download [link](https://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/GEOSTAT-grid-POP-1K-2011-V2-0-1.zip) (.zip file)
 
-- Spain Grid: **ETRS89_LAEA_ES_1K**
-Digitalized cartography (1km resolution grid) of the Spanish territory, available at [INE](http://www.ine.es/censos2011_datos/cen11_datos_resultados_rejillas.htm). Download [link](http://www.ine.es/censos2011_datos/RJ_CPV_20111101_TT_02_R_INE.zip) (.zip file)
+- **Spain Grid**: ETRS89_LAEA_ES_1K
 
-- European countries contour
-Vector maps in GeoJSON format are downloaded from [this online service](https://geojson-maps.ash.ms/)
-An online geodata [converter](https://mygeodata.cloud/converter/geojson-to-latlong) is used to transform the contour coordinate system from **WGS 84 (EPSG:4326)** to **ETRS89 / LAEA Europe (EPSG:3035)**. This is a necessary conversion due to the fact that the grid coordinates are represented with the latter system.
+   Digitalized cartography (1km resolution grid) of the Spanish territory, available at [INE](http://www.ine.es/censos2011_datos/cen11_datos_resultados_rejillas.htm). Download [link](http://www.ine.es/censos2011_datos/RJ_CPV_20111101_TT_02_R_INE.zip) (.zip file)
+
+- **European countries contour**
+   
+   Vector maps in GeoJSON format are downloaded from [this online service](https://geojson-maps.ash.ms/)
+
+  An online geodata [converter](https://mygeodata.cloud/converter/geojson-to-latlong) is used to transform the contour coordinate system from **WGS 84 (EPSG:4326)** to **ETRS89 / LAEA Europe (EPSG:3035)**. This is a necessary conversion due to the fact that the grid coordinates are represented with the latter system.
 
 ## Project Structure
 
