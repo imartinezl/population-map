@@ -67,11 +67,23 @@ Prior to the visualization stage, there is a data preprocessing stage in which s
 - **Grid + Population dataset**: Instead of reading the huge shapefile containing all the geographical information, I imported a CSV file that just summarized the population of each cell from the grid. The cell ID string contained the ETRS89 coordinates (North-East), that were extracted and then converted to WGS 84 (latitude-longitude).
 
  
-2. Vector Tiles
+2. Data Export: GeoJSON vs Vector Tiles
+
+Once the data was correctly processed, it had to be exported to the common formats to store spatial information. 
+
+- GeoJSON
+
+Built from scratch using R and the library jsonlite, the data was shaped into a collection of features (simple polygons), like this:
+
+```
+
+```
+
 
 3. Map Visualization
 
 - Offline (static) visualization
+
 Library ggplot2 for R is used to visualize the population density both in Europe and in Spain. Apart from the population quantity, I also included a map that highlighted the 1km sq cells with no population, which can lead to some interesting analysis.
 
 - Online (interactive) visualization
@@ -82,13 +94,20 @@ On one side, the Student plan from CARTO just offered 350 MB of data storage, wh
 
 Therefore, these two points (storage limit and supported formats), were the main reasons not to select CARTO as the visualization platform. Thus, the decision was inclined towards Mapbox.
 
+<p align="center">
+   <img src="docs/carto.png">
+   <img src="docs/mapbox.jpg">
+</p>
+
 In this sense, apart from using the online platform Mapbox Studio, I also explored the way of self-hosting the map and the tiles. This track will be further explained on the next section.
 
 4. Self-Hosted Map Tiles
 
+The reference I followed on this stage was this [article](https://geovation.github.io/build-your-own-static-vector-tile-pipeline) by [James Gardner](https://www.linkedin.com/in/james-gardner-47a66b2). In the article Mapbox vector tiles are introduced, with a very clear comparison (pros and cons) with GeoJSON or TopoJSON formats.
+
+I also the checked this GitHub [repo](https://github.com/klokantech/vector-tiles-sample) by [Klokan Technologies GmbH](https://github.com/klokantech), where they display vector tiles with a local copy of MapBoxGL JS.
 
 
-Interactive
 
 - Generate GEOJSON
 
