@@ -76,9 +76,46 @@ Once the data was correctly processed, it had to be exported to the common forma
 Built from scratch using R and the library jsonlite, the data was shaped into a collection of features (simple polygons), like this:
 
 ```
-
+{
+   "type":"FeatureCollection",
+   "features":[
+      {
+         "type":"Feature",
+         "geometry":{  
+            "type":"Polygon",
+            "coordinates":[[
+		[10.2181,47.3189],
+		[10.218,47.3099],
+		[10.2048,47.3099],
+		[10.2049,47.3189],
+		[10.2181,47.3189]
+		]]
+         },
+         "properties":{  
+            "p":8,
+            "e":false
+         }
+      },
+      {
+         "type":"Feature",
+         "geometry":{  
+            "type":"Polygon",
+            "coordinates":[[
+		[10.271,47.3188],
+		[10.2709,47.3098],
+		[10.2577,47.3098],
+		[10.2577,47.3188],
+		[10.271,47.3188]
+		]]
+         },
+         "properties":{  
+            "p":7,
+            "e":false
+         }
+      }
+   ]
+}
 ```
-
 
 3. Map Visualization
 
