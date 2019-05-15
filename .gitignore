@@ -9,7 +9,6 @@
 .Rhistory
 
 !tiles_png/*
-R/images/*
 data/*
 heroku/node_modules/*
 
