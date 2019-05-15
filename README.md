@@ -4,6 +4,11 @@ This repo contains the code for the analysis of the population density in Europe
 
 Please, notice that the used datasets are quite large in size, and thus the project has been concieved from an educational point of view, always looking for the maximum efficiency in the entire pipeline. 
 
+<div align="center">
+	<img width="650px" src="R/images/europe_600ppi_16x8_crop.png">
+	<img width="150px" src="R/images/legend.png">
+</div>
+
 ## What I wanted to do
 
 - **Visualize the least populated regions in Europe**
