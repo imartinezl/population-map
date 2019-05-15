@@ -9,6 +9,8 @@ Please, notice that the used datasets are quite large in size, and thus the proj
 	<img width="150px" src="R/images/legend.png">
 </div>
 
+<a href="https://github.com/imartinezl/population-map/blob/master/R/images/europe_600ppi_16x8_crop.png?raw=true" target="_blank">High resolution image</a>
+
 ## What I wanted to do
 
 - **Visualize the least populated regions in Europe**
