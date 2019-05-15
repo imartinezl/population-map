@@ -11,7 +11,7 @@ contour_spain <- data.table::fread('../data/contour/contour_spain_processed.csv'
 '../data/population/population_2011_spain.csv.gz' %>% 
   data.table::fread(stringsAsFactors = F) %>%
   canary.translation %>% 
-  dplyr::slice(1:20000) %>%
+  # dplyr::slice(1:20000) %>%
   dplyr::mutate(empty = t1_1 == 0) %>% 
   ggplot2::ggplot()+
   ggplot2::geom_tile(ggplot2::aes(x=E,y=N, fill=empty), width=1, height=1)+
@@ -19,7 +19,9 @@ contour_spain <- data.table::fread('../data/contour/contour_spain_processed.csv'
   canary.lines() +
   ggplot2::scale_fill_manual(guide=F,values=c('white','#35D68D'))+
   ggplot2::coord_equal() +
-  ggplot2::theme_void()
+  ggplot2::theme_void() +
+  ggplot2::ggsave(filename = 'spain.png', device='png', dpi = 600, height=8, width=16)
+  
 
 contour_eu <- data.table::fread('../data/contour/contour_eu_processed.csv')
 not_data <- c(8,11,13,33,38,40,41,42,49,54,55)-5
@@ -52,8 +54,8 @@ contour_eu %>%
   ggplot2::xlim(c(2500,7400)) + ggplot2::ylim(c(1400,5500))+
   ggplot2::coord_equal() +
   ggplot2::theme_void() +
-  ggplot2::theme(panel.grid.major = ggplot2::element_line(color="#404F4D", size = 0.1)) #+
-  # ggplot2::ggsave(filename = 'test2.png', device='png', dpi = 300, height=16, width=32)
+  # ggplot2::theme(panel.grid.major = ggplot2::element_line(color="#404F4D", size = 0.1)) #+
+  ggplot2::ggsave(filename = 'europe.png', device='png', dpi = 600, height=8, width=16)
 
 
 # Coord Map -------------------------------------------------------------------------
