@@ -4,12 +4,23 @@ This repo contains the code for the analysis of the population density in Europe
 
 Please, notice that the used datasets are quite large in size, and thus the project has been concieved from an educational point of view, always looking for the maximum efficiency in the entire pipeline. 
 
+- Self hosted map on [Github Pages](https://imartinezl.github.io/population-map/)
+
+![](docs/video_zoom.gif)
+<div align="center">
+	<img width="400px" src="docs/map_theme1.png">
+	<img width="400px" src="docs/map_theme2.png">
+</div>
+
+
+- Nodoby Lives Here:
+<a href="R/images/europe_600ppi_16x8_crop.png?raw=true" >High resolution image</a>
+
 <div align="center">
 	<img width="650px" src="R/images/europe_600ppi_16x8_crop.png">
 	<img width="150px" src="R/images/legend.png">
 </div>
 
-<a href="https://github.com/imartinezl/population-map/blob/master/R/images/europe_600ppi_16x8_crop.png?raw=true" >High resolution image</a>
 
 ## What I wanted to do
 
