@@ -123,8 +123,9 @@ The previous GeoJSON file was converted to the [MBTiles](https://github.com/mapb
 For the conversion process I used the tool [Tippecanoe](https://github.com/mapbox/tippecanoe), by Mapbox.
 
 It is a highly configurable tool, with lots of different options for large datasets. After some exploration and learning of the implications of each option, this is my final recipe:
-
-
+```
+tippecanoe --coalesce-densest-as-needed --minimum-zoom=0 --maximum-zoom=g --output-to-directory "tiles" data.geojson
+```
 
 
 ### 3. Map Visualization
@@ -179,41 +180,17 @@ You can check the deployed map on [Heroku](https://population-map.herokuapp.com/
 
 <img width="400px" src="docs/map_theme1.png">
 
+The color scale was inspired from CARTO [colors](https://carto.com/carto-colors/):
+
+|10|50|100|1000|5000|10000|>10000|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|#d2fbd4|#a5dbc2|#7bbcb0|#559c9e|#3a7c89|#235d72|#123f5a|
+
 #### Deployment on Github Pages
 
 I also the checked this GitHub [repo](https://github.com/klokantech/vector-tiles-sample) by [Klokan Technologies GmbH](https://github.com/klokantech), where they display vector tiles with a local copy of MapBoxGL JS. This option does not require any running server, and it just requires a local copy of the tiles.
 
 <img width="400px" src="docs/map_theme2.png">
-
-
-
-- Generate GEOJSON
-
-https://geovation.github.io/build-your-own-static-vector-tile-pipeline
-
-- MBTiles generation with tippecanoe
-tippecanoe -o tile*.mbtiles -zg --coalesce-densest-as-needed --extend-zooms-if-still-dropping test_*.geojson
-
-tippecanoe --no-tile-compression --no-feature-limit --no-tile-size-limit --drop-densest-as-needed --minimum-zoom=0 --maximum-zoom=11 --output-to-directory "tiles" ./data/complete.geojson
-
-
-tippecanoe --cluster-densest-as-needed --minimum-zoom=0 --maximum-zoom=9 --output-to-directory "tiles_tmp1" ./data/complete.geojson
-
-tippecanoe --drop-densest-as-needed --minimum-zoom=0 --maximum-zoom=9 --output-to-directory "tiles_tmp2" ./data/complete.geojson
-
-tippecanoe --no-tile-size-limit --minimum-zoom=0 --maximum-zoom=9 --output-to-directory "tiles_tmp2" ./data/complete.geojson
-
-
-
-- Upload to Mapbox
-
-
-- Countries Covered
-
-- Color Scale
-10-50-100-1000-5000-10000->10000
-#d2fbd4,#a5dbc2,#7bbcb0,#559c9e,#3a7c89,#235d72,#123f5a
-https://carto.com/carto-colors/
 
 ## Challenges I run into
 
