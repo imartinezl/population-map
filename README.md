@@ -9,7 +9,7 @@ Please, notice that the used datasets are quite large in size, and thus the proj
 	<img width="150px" src="R/images/legend.png">
 </div>
 
-<a href="https://github.com/imartinezl/population-map/blob/master/R/images/europe_600ppi_16x8_crop.png?raw=true" target="_blank">High resolution image</a>
+<a href="https://github.com/imartinezl/population-map/blob/master/R/images/europe_600ppi_16x8_crop.png?raw=true" >High resolution image</a>
 
 ## What I wanted to do
 
@@ -104,22 +104,8 @@ Built from scratch using R and the library jsonlite, the data was shaped into a 
          }
       },
       {
-         "type":"Feature",
-         "geometry":{  
-            "type":"Polygon",
-            "coordinates":[[
-		[10.271,47.3188],
-		[10.2709,47.3098],
-		[10.2577,47.3098],
-		[10.2577,47.3188],
-		[10.271,47.3188]
-		]]
-         },
-         "properties":{  
-            "p":7,
-            "e":false
-         }
-      }
+         ...
+      }, ...
    ]
 }
 ```
