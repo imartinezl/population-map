@@ -178,19 +178,26 @@ liveServer.start(params);
 
 You can check the deployed map on [Heroku](https://population-map.herokuapp.com/):
 
-<img width="400px" src="docs/map_theme1.png">
+<p align="center">
+	<img width="500px" src="docs/map_theme1.png">
+</p>
 
-The color scale was inspired from CARTO [colors](https://carto.com/carto-colors/):
-
-|10|50|100|1000|5000|10000|>10000|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|#d2fbd4|#a5dbc2|#7bbcb0|#559c9e|#3a7c89|#235d72|#123f5a|
+|3|200|11000|30000|
+|:---:|:---:|:---:|:---:|
+|![#ffffff](https://placehold.it/15/ffffff/000000?text=+) #ffffff| ![#d3ba9c](https://placehold.it/15/d3ba9c/000000?text=+) #d3ba9c|![#dd0e18](https://placehold.it/15/dd0e18/000000?text=+) #dd0e18| ![#ddc10e](https://placehold.it/15/ddc10e/000000?text=+) #ddc10e|
 
 #### Deployment on Github Pages
 
 I also the checked this GitHub [repo](https://github.com/klokantech/vector-tiles-sample) by [Klokan Technologies GmbH](https://github.com/klokantech), where they display vector tiles with a local copy of MapBoxGL JS. This option does not require any running server, and it just requires a local copy of the tiles.
 
-<img width="400px" src="docs/map_theme2.png">
+<p align="center">
+	<img width="500px" src="docs/map_theme2.png">
+</p>
+The color scale was inspired from CARTO [colors](https://carto.com/carto-colors/):
+
+|10|50|100|1000|5000|10000|>10000|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|![#d2fbd4](https://placehold.it/15/d2fbd4/000000?text=+) #d2fbd4| ![#a5dbc2](https://placehold.it/15/a5dbc2/000000?text=+) #a5dbc2|![#7bbcb0](https://placehold.it/15/7bbcb0/000000?text=+) #7bbcb0| ![#559c9e](https://placehold.it/15/559c9e/000000?text=+) #559c9e|![#3a7c89](https://placehold.it/15/3a7c89/000000?text=+) #3a7c89|![#235d72](https://placehold.it/15/235d72/000000?text=+) #235d72|![#123f5a](https://placehold.it/15/123f5a/000000?text=+) #123f5a|
 
 ## Challenges I run into
 
