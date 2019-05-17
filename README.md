@@ -132,20 +132,30 @@ tippecanoe --coalesce-densest-as-needed --minimum-zoom=0 --maximum-zoom=g --outp
 
 #### Offline (static) visualization
 
-Library ggplot2 for R is used to visualize the population density both in Europe and in Spain. Apart from the population quantity, I also included a map that highlighted the 1km sq cells with no population, which can lead to some interesting analysis.
+The library ggplot2 for R is used to visualize the population density both in Europe and in Spain. Apart from the population quantity, I also included a map that highlighted the 1km sq cells with no population, which can lead to some interesting analysis.
+
+<p align="center">
+<img width="800px" src="R/images/spain_300ppi_32x16.png">
+</p>
 
 #### Online (interactive) visualization
 
 Regarding interactive visualizations, two platforms were studied: [CARTO](https://carto.com/) and [Mapbox](https://www.mapbox.com/).
 
-On one side, the Student plan from CARTO just offered 350 MB of data storage, whereas the free tier plan from Mapbox offered much larger storage for tilesets (50 GB). Moreover, CARTO Import API does not support MBTiles, so the only remaining alternative was to upload the entire GeoJSON file to be imported and processed into a SQL-like table with the polygon coordinates. Check the CARTO supported formats on the [CARTO Documentation](https://carto.com/developers/import-api/guides/importing-geospatial-data/#supported-geospatial-data-formats).
-
-Therefore, these two points (storage limit and supported formats), were the main reasons not to select CARTO as the visualization platform. Thus, the decision was inclined towards Mapbox.
-
 <p align="center">
    <img src="docs/carto.png">
    <img src="docs/mapbox.jpg">
 </p>
+
+On one side, the Student plan from CARTO just offered 350 MB of data storage, whereas the free tier plan from Mapbox offered much larger storage for tilesets (50 GB). Moreover, CARTO Import API does not support MBTiles, so the only remaining alternative was to upload the entire GeoJSON file to be imported and processed into a SQL-like table with the polygon coordinates. Check the CARTO supported formats on the [CARTO Documentation](https://carto.com/developers/import-api/guides/importing-geospatial-data/#supported-geospatial-data-formats).
+
+Therefore, these two points (storage limit and supported formats), were the main reasons not to select CARTO as the visualization platform. Thus, the decision was inclined towards Mapbox.
+
+https://api.mapbox.com/styles/v1/inigoml/cjv12gf3r387n1fjwpodk0fx9.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.8/46.373476/8.118357/0
+
+https://api.mapbox.com/styles/v1/inigoml/cjv1hdnqb03fy1fmlvg347n3c.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
+
+https://api.mapbox.com/styles/v1/inigoml/cjv6d2pyk013v1fmqkzhw55rj.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
 
 In this sense, apart from using the online platform Mapbox Studio, I also explored the way of self-hosting the map and the tiles. This track will be further explained on the next section.
 
@@ -201,12 +211,20 @@ The color scale was inspired from CARTO [colors](https://carto.com/carto-colors/
 
 ## Challenges I run into
 
+
 ## Accomplishments that I'm proud of
 
 ## What I learned
 
+First of all, I learned how to navigate public institutions open data services to find desired information. Sometimes this information is not prepared to be used right away, and in that sense, the preprocessing stage was crucial.
+
+Overall, I learned how to handle large spatial datasets and the difference between vector tiles and raster tiles.
+I spent a lot of time exploring lots of online and offline tools to convert data into vector and raster tiles. I found out that several services and libraries are benn recently deprecated or unmaintained. 
+
+
 ## What's next
 
+I would like to improve the latency of the interactive visualizations. The dataset is large if we consider all the points, but since it is not necessary to show all the points at once, using a more robust tile server could help in this sense.
 
 ## How I built it
 
