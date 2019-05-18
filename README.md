@@ -151,11 +151,13 @@ On one side, the Student plan from CARTO just offered 350 MB of data storage, wh
 
 Therefore, these two points (storage limit and supported formats), were the main reasons not to select CARTO as the visualization platform. Thus, the decision was inclined towards Mapbox.
 
-https://api.mapbox.com/styles/v1/inigoml/cjv12gf3r387n1fjwpodk0fx9.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.8/46.373476/8.118357/0
+[<img width="260px" src="/docs/Screenshot_EU Population Nobody.png">](https://api.mapbox.com/styles/v1/inigoml/cjv12gf3r387n1fjwpodk0fx9.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.8/46.373476/8.118357/0)
 
-https://api.mapbox.com/styles/v1/inigoml/cjv1hdnqb03fy1fmlvg347n3c.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
+[<img width="260px" src="/docs/Screenshot_EU Population density.png">](https://api.mapbox.com/styles/v1/inigoml/cjv1hdnqb03fy1fmlvg347n3c.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
+)
 
-https://api.mapbox.com/styles/v1/inigoml/cjv6d2pyk013v1fmqkzhw55rj.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
+[<img width="260px" src="/docs/Screenshot_EU Population density - green.png">](https://api.mapbox.com/styles/v1/inigoml/cjv6d2pyk013v1fmqkzhw55rj.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
+)
 
 In this sense, apart from using the online platform Mapbox Studio, I also explored the way of self-hosting the map and the tiles. This track will be further explained on the next section.
 
