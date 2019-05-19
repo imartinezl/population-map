@@ -147,16 +147,15 @@ Regarding interactive visualizations, two platforms were studied: [CARTO](https:
    <img src="docs/mapbox.jpg">
 </p>
 
+
 On one side, the Student plan from CARTO just offered 350 MB of data storage, whereas the free tier plan from Mapbox offered much larger storage for tilesets (50 GB). Moreover, CARTO Import API does not support MBTiles, so the only remaining alternative was to upload the entire GeoJSON file to be imported and processed into a SQL-like table with the polygon coordinates. Check the CARTO supported formats on the [CARTO Documentation](https://carto.com/developers/import-api/guides/importing-geospatial-data/#supported-geospatial-data-formats).
 
-Therefore, these two points (storage limit and supported formats), were the main reasons not to select CARTO as the visualization platform. Thus, the decision was inclined towards Mapbox.
+Therefore, these two points (storage limit and supported formats), were the main reasons not to select CARTO as the visualization platform. Thus, the decision was inclined towards Mapbox. The following screenshots have been taken from the maps generated on Mapbox. To interact with the map by yourself, just click on the images:
 
-[<img width="260px" src="/docs/Screenshot_EU Population Nobody.png">](https://api.mapbox.com/styles/v1/inigoml/cjv12gf3r387n1fjwpodk0fx9.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.8/46.373476/8.118357/0)
-
-[<img width="260px" src="/docs/Screenshot_EU Population density.png">](https://api.mapbox.com/styles/v1/inigoml/cjv1hdnqb03fy1fmlvg347n3c.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
+[<img width="280px" src="/docs/Screenshot_EU Population Nobody.png">](https://api.mapbox.com/styles/v1/inigoml/cjv12gf3r387n1fjwpodk0fx9.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.8/46.373476/8.118357/0)
+[<img width="280px" src="/docs/Screenshot_EU Population density.png">](https://api.mapbox.com/styles/v1/inigoml/cjv1hdnqb03fy1fmlvg347n3c.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
 )
-
-[<img width="260px" src="/docs/Screenshot_EU Population density - green.png">](https://api.mapbox.com/styles/v1/inigoml/cjv6d2pyk013v1fmqkzhw55rj.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
+[<img width="280px" src="/docs/Screenshot_EU Population density - green.png">](https://api.mapbox.com/styles/v1/inigoml/cjv6d2pyk013v1fmqkzhw55rj.html?fresh=true&title=true&access_token=pk.eyJ1IjoiaW5pZ29tbCIsImEiOiJjamcycndxcDAwcmlsMnFwaHk4eDdpanhnIn0.lOge1jvtZgNLhr6yUdz8qA#4.1/48.654013/18.622102/0
 )
 
 In this sense, apart from using the online platform Mapbox Studio, I also explored the way of self-hosting the map and the tiles. This track will be further explained on the next section.
@@ -226,7 +225,7 @@ I spent a lot of time exploring lots of online and offline tools to convert data
 
 ## What's next
 
-I would like to improve the latency of the interactive visualizations. The dataset is large if we consider all the points, but since it is not necessary to show all the points at once, using a more robust tile server could help in this sense.
+I would like to improve the latency of the interactive visualizations. The dataset is large if we consider all the points, but since it is not necessary to show all the points at once, using a more robust tile server could help in this sense. Just reaching the level of smoothness and latency on [Dan Cookson](https://twitter.com/danc00ks0n) map -- available [here](https://dancooksonresearch.carto.com/u/dancookson/viz/49ca276c-adf9-454a-8f64-0ccf0e46eed0/embed_map) -- would be amazing.
 
 ## How I built it
 
