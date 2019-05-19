@@ -13,7 +13,7 @@ Please, notice that the used datasets are quite large in size, and thus the proj
 #### Nodoby Lives Here: <a href="R/images/europe_600ppi_16x8_crop.png?raw=true" >High resolution image</a>
 
 <div align="center">
-	<img width="650px" src="R/images/europe_600ppi_16x8_crop.png">
+	<img width="650px" src="R/images/europe_600ppi_16x8_crop_compress.png">
 	<img width="150px" src="R/images/legend.png">
 </div>
 
