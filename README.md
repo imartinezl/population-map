@@ -17,7 +17,6 @@ Please, notice that the used datasets are quite large in size, and thus the proj
 	<img width="150px" src="R/images/legend.png">
 </div>
 
-
 ## What I wanted to do
 
 1. **Visualize the least populated regions in Europe**
@@ -127,7 +126,6 @@ It is a highly configurable tool, with lots of different options for large datas
 tippecanoe --coalesce-densest-as-needed --minimum-zoom=0 --maximum-zoom=g --output-to-directory "tiles" data.geojson
 ```
 
-
 ### 3. Map Visualization
 
 #### Offline (static) visualization
@@ -146,7 +144,6 @@ Regarding interactive visualizations, two platforms were studied: [CARTO](https:
    <img src="docs/carto.png">
    <img src="docs/mapbox.jpg">
 </p>
-
 
 On one side, the Student plan from CARTO just offered 350 MB of data storage, whereas the free tier plan from Mapbox offered much larger storage for tilesets (50 GB). Moreover, CARTO Import API does not support MBTiles, so the only remaining alternative was to upload the entire GeoJSON file to be imported and processed into a SQL-like table with the polygon coordinates. Check the CARTO supported formats on the [CARTO Documentation](https://carto.com/developers/import-api/guides/importing-geospatial-data/#supported-geospatial-data-formats).
 
@@ -210,18 +207,12 @@ The color scale was inspired from CARTO [colors](https://carto.com/carto-colors/
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |![#d2fbd4](https://placehold.it/15/d2fbd4/000000?text=+) #d2fbd4| ![#a5dbc2](https://placehold.it/15/a5dbc2/000000?text=+) #a5dbc2|![#7bbcb0](https://placehold.it/15/7bbcb0/000000?text=+) #7bbcb0| ![#559c9e](https://placehold.it/15/559c9e/000000?text=+) #559c9e|![#3a7c89](https://placehold.it/15/3a7c89/000000?text=+) #3a7c89|![#235d72](https://placehold.it/15/235d72/000000?text=+) #235d72|![#123f5a](https://placehold.it/15/123f5a/000000?text=+) #123f5a|
 
-## Challenges I run into
-
-
-## Accomplishments that I'm proud of
-
 ## What I learned
 
 First of all, I learned how to navigate public institutions open data services to find desired information. Sometimes this information is not prepared to be used right away, and in that sense, the preprocessing stage was crucial.
 
 Overall, I learned how to handle large spatial datasets and the difference between vector tiles and raster tiles.
 I spent a lot of time exploring lots of online and offline tools to convert data into vector and raster tiles. I found out that several services and libraries are benn recently deprecated or unmaintained. 
-
 
 ## What's next
 
