@@ -74,4 +74,4 @@ euro_nuts3_sf %>%
                  plot.title = ggplot2::element_text(hjust=0.05, size=14, face="bold"),
                  ) 
 
-ggplot2::ggsave('EUFertility.png', width=10, height=10)
+ggplot2::ggsave('EUFertility.png', width=10, height=10, dpi=300)
