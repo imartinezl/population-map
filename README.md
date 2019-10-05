@@ -201,7 +201,8 @@ I also the checked this GitHub [repo](https://github.com/klokantech/vector-tiles
 <p align="center">
 	<img width="500px" src="docs/map_theme2.png">
 </p>
-The color scale was inspired from CARTO [colors](https://carto.com/carto-colors/):
+
+The color scale was inspired from [CARTO colors](https://carto.com/carto-colors/)
 
 |10|50|100|1000|5000|10000|>10000|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
