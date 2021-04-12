@@ -192,7 +192,7 @@ You can check the deployed map on [Heroku](https://population-map.herokuapp.com/
 
 |3|200|11000|30000|
 |:---:|:---:|:---:|:---:|
-|![#ffffff](https://placehold.it/15/ffffff/000000?text=+) #ffffff| ![#d3ba9c](https://placehold.it/15/d3ba9c/000000?text=+) #d3ba9c|![#dd0e18](https://placehold.it/15/dd0e18/000000?text=+) #dd0e18| ![#ddc10e](https://placehold.it/15/ddc10e/000000?text=+) #ddc10e|
+|![#ffffff](https://via.placeholder.com/15/ffffff/000000?text=+) #ffffff| ![#d3ba9c](https://via.placeholder.com/15/d3ba9c/000000?text=+) #d3ba9c|![#dd0e18](https://via.placeholder.com/15/dd0e18/000000?text=+) #dd0e18| ![#ddc10e](https://via.placeholder.com/15/ddc10e/000000?text=+) #ddc10e|
 
 #### Deployment on Github Pages
 
@@ -206,7 +206,7 @@ The color scale was inspired from [CARTO colors](https://carto.com/carto-colors/
 
 |10|50|100|1000|5000|10000|>10000|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|![#d2fbd4](https://placehold.it/15/d2fbd4/000000?text=+) #d2fbd4| ![#a5dbc2](https://placehold.it/15/a5dbc2/000000?text=+) #a5dbc2|![#7bbcb0](https://placehold.it/15/7bbcb0/000000?text=+) #7bbcb0| ![#559c9e](https://placehold.it/15/559c9e/000000?text=+) #559c9e|![#3a7c89](https://placehold.it/15/3a7c89/000000?text=+) #3a7c89|![#235d72](https://placehold.it/15/235d72/000000?text=+) #235d72|![#123f5a](https://placehold.it/15/123f5a/000000?text=+) #123f5a|
+|![#d2fbd4](https://via.placeholder.com/15/d2fbd4/000000?text=+) #d2fbd4| ![#a5dbc2](https://via.placeholder.com/15/a5dbc2/000000?text=+) #a5dbc2|![#7bbcb0](https://via.placeholder.com/15/7bbcb0/000000?text=+) #7bbcb0| ![#559c9e](https://via.placeholder.com/15/559c9e/000000?text=+) #559c9e|![#3a7c89](https://via.placeholder.com/15/3a7c89/000000?text=+) #3a7c89|![#235d72](https://via.placeholder.com/15/235d72/000000?text=+) #235d72|![#123f5a](https://via.placeholder.com/15/123f5a/000000?text=+) #123f5a|
 
 ## What I learned
 
